@@ -5,3 +5,7 @@
 # python
 
 *.pyc
+
+# frontend libs
+
+static/base/bower_components/

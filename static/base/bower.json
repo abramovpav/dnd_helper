@@ -1,0 +1,12 @@
+{
+  "name": "dnd_helper",
+  "description": "DnD helper",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "dependencies": {
+    "angular": "^1.5.8",
+    "bootstrap": "^3.3.7"
+  }
+}
