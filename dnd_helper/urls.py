@@ -21,5 +21,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^auth/', include('auth.urls')),
-    url(r'^', TemplateView.as_view(template_name="base/index.html"))
+    url(r'^', TemplateView.as_view(template_name="alternate/index.html"))
 ]
