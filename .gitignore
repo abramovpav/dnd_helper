@@ -9,3 +9,5 @@
 # frontend libs
 
 static/base/bower_components/
+
+app_variables.yml
