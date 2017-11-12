@@ -11,3 +11,9 @@
 static/base/bower_components/
 
 app_variables.yml
+
+react_ui/node_modules/
+
+static/js/bundle.js
+
+static/base/node_modules/

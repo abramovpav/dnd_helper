@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Class</title>
+{#  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>#}
+{#  <script src="{{ STATIC_URL }}js/jquery.js"></script>#}
+{#  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">#}
+{#  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}build/bundle.css" />#}
+</head>
+<body>
+  <div id="app"></div>
+  <script>
+    window.boot = {
+      STATIC_URL: '{{ STATIC_URL }}',
+{#      GRADES: {% autoescape off %}{{ GRADES }}{% endautoescape %},#}
+{#      CATEGORIES: {% autoescape off %}{{ CATEGORIES }}{% endautoescape %},#}
+{#      CATEGORIES_MAPPING: {% autoescape off %}{{ CATEGORIES_MAPPING }}{% endautoescape %},#}
+{#      RESOURCE_CONTENT_TYPES: {% autoescape off %}{{ RESOURCE_CONTENT_TYPES }}{% endautoescape %},#}
+{#      USER_ID: {{ request.user.id }},#}
+      BASE_URL: '{{ BASE_URL }}',
+{#      IS_ACTIVE: {{ IS_ACTIVE }},#}
+{#      IS_SUPER_TEACHER: {{ IS_SUPER_TEACHER }}#}
+    };
+  </script>
+  <script src="{{ STATIC_URL }}js/bundle.js"></script>
+</body>
+</html>
