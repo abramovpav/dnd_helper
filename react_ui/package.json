@@ -2,11 +2,11 @@
   "name": "dnd_helper",
   "version": "0.0.0",
   "description": "Helper for party in DnD",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "start": "watchify -e src/main.js -v -t [ babelify --presets [ es2015 react] ] -o ../static/js/bundle.js"
+    "start": "watchify -e src/main.js -v -t [ babelify ] -o ../static/build/bundle.js"
   },
-  "author": "",
+  "author": "Pavel Abramau",
   "license": "ISC",
   "dependencies": {
     "babel-core": "^6.26.0",
@@ -21,6 +21,8 @@
     "redux": "^3.7.2"
   },
   "devDependencies": {
+    "babel-plugin-syntax-object-rest-spread": "^6.13.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babelify": "^8.0.0",

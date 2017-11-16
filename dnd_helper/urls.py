@@ -18,15 +18,15 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic import TemplateView, RedirectView
 
-from auth.views import StudyLandingView
+from auth.views import DnDHelperMainView
 from dnd_helper import settings
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^auth/', include('auth.urls')),
-    url(r'^react/', StudyLandingView.as_view(), name='study'),
     url(r'^favicon\.ico$', RedirectView.as_view(url='/static/images/favicon.ico')),
+    url(r'^r/.*$', DnDHelperMainView.as_view(), name='react-application'),
     url(r'^', TemplateView.as_view(template_name="base/index.html"))
 ]
 
