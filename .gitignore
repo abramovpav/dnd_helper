@@ -6,6 +6,8 @@
 
 *.pyc
 
+dnd_helper/settings_dev.py
+
 # frontend libs
 
 react_ui/node_modules/
