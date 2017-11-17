@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Class</title>
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}build/bundle.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="row-fluid">
+      <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
+        <div class="auth-form">
+          <h2>Sign in</h2>
+          <hr class="dotted" />
+          <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-info">Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

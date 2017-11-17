@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.contrib.auth.views import LoginView
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic import TemplateView, RedirectView
 
+from auth.forms import DnDAuthenticationForm
 from dnd.views import DnDHelperMainView
 from dnd_helper import settings
 
@@ -26,6 +28,7 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^auth/', include('auth.urls')),
     url(r'^favicon\.ico$', RedirectView.as_view(url='/static/images/favicon.ico')),
+    url(r'^r/login/$', LoginView.as_view(authentication_form=DnDAuthenticationForm, template_name='auth/login.html'), name='dnd-login'),
     url(r'^r/.*$', DnDHelperMainView.as_view(), name='react-application'),
     url(r'^', TemplateView.as_view(template_name="base/index.html"))
 ]
