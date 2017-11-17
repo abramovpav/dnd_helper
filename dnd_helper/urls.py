@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic import TemplateView, RedirectView
 
-from auth.views import DnDHelperMainView
+from dnd.views import DnDHelperMainView
 from dnd_helper import settings
 
 urlpatterns = [

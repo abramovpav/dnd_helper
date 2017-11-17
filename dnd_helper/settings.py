@@ -26,7 +26,15 @@ SECRET_KEY = '+rx4k#y$hc9btsj2m9213vs3l1w%1zq2q1fk@l7*76)fxv$$@$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+DOMAIN_NAME = os.environ['DOMAIN_NAME']
+
+ADMINS = (
+
+)
+
 ALLOWED_HOSTS = []
+
+AUTH_USER_MODEL = 'core.User'
 
 
 # Application definition
@@ -40,6 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'auth',
+    'core',
+    'dnd'
 ]
 
 MIDDLEWARE = [
@@ -83,15 +93,12 @@ DATABASES = {
     # },
 
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dnd_helper',
-        'USER': 'root',
-        'PASSWORD': '123258',
-        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
-        'PORT': '3306',
-        # 'OPTIONS': {
-        #     'read_default_file': '~/.my.cnf',
-        # },
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ['DB_NAME'],
+        'USER': os.environ['DB_USER'],
+        'PASSWORD': os.environ['DB_PASSWORD'],
+        'HOST': os.environ['DB_HOST'],
+        'PORT': os.environ['DB_PORT'],
     }
 }
 
@@ -126,7 +133,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
