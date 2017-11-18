@@ -1,0 +1,42 @@
+.btn {
+  background-color: transparent;
+  border: 1px solid $grey-border-color;
+  border-radius: $border-radius;
+  padding: 5px 20px;
+  font-family: 'Museo Sans';
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  border-color: $light-grey-border-color;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn:active {
+  border-color: $dark-grey-border-color;
+}
+
+.btn.blue {
+  background-color: $main-blue-color;
+  color: white;
+  border-color: $main-blue-color;
+}
+
+.btn.blue:hover {
+  border-color: $light-blue-color;
+  background-color: $light-blue-color;
+}
+
+.btn.blue:active {
+  border-color: $dark-blue-color;
+  background-color: $dark-blue-color;
+}
+
+
+.btn.wide {
+  width: 100%;
+}
