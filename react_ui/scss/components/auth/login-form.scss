@@ -4,17 +4,25 @@
   display: flex;
 
   > .login-form {
+    margin: auto;
+    
     >.login-form-title {
       font-size: 23px;
       font-weight: bold;
     }
-  }
-  > .login-form {
-    margin: auto;
-  }
-
-  > .login-form p {
-    display: flex;
-    justify-content: space-between;
+    
+    .form-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+      > * {
+        margin: auto 0;
+      }
+      
+      > label {
+        margin-right: 10px;
+      }
+      
+    }
   }
 }

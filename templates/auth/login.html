@@ -3,19 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <title>Class</title>
-  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}build/bundle.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}build/bundle.css"/>
 </head>
 <body>
-  <div class="login-form-container">
-    <div class="login-form">
-      <div class="login-form-title">Sign in</div>
-      <hr class="div-line" />
-      <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn blue wide">Login</button>
-      </form>
-    </div>
+<div class="login-form-container">
+  <div class="login-form">
+    <div class="login-form-title">Sign in</div>
+    <hr class="div-line"/>
+    <form method="post">
+      {% csrf_token %}
+      <div class="form-row">
+      {{ form.non_field_errors }}
+      </div>
+      <div class="form-row">
+        {{ form.username.errors }}
+        {{ form.username.label_tag }}
+        {{ form.username }}
+      </div>
+      <div class="form-row">
+        {{ form.password.errors }}
+        {{ form.password.label_tag }}
+        {{ form.password }}
+      </div>
+      <button type="submit" class="btn blue wide">Login</button>
+      <hr/>
+    </form>
   </div>
+</div>
 </body>
 </html>

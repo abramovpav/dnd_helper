@@ -1,9 +1,14 @@
 from django.contrib.auth import authenticate
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UsernameField
 from django import forms
 
 
 class DnDAuthenticationForm(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        super(DnDAuthenticationForm, self).__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs['class'] = 'input-control'
+        self.fields['password'].widget.attrs['class'] = 'input-control'
+
     next = forms.CharField(widget=forms.HiddenInput(), initial='/r')
 
     error_messages = {
