@@ -1,0 +1,14 @@
+.general-data {
+  display: flex;
+  flex-direction: row;
+  
+  > .hero-avatar {
+    margin-right: 10px;
+  }
+  
+  > .general-info {
+    flex-grow: 2;
+    display: flex;
+    flex-direction: column;
+  }
+}

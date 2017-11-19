@@ -1,0 +1,45 @@
+.page-container.dashboard {
+  > .page-content {
+    //padding-left: 0;
+    //padding-right: 0;
+  }
+}
+
+.heroes-list {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  
+  > .hero-item {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    padding: 15px 35px;
+    
+    > .hero-avatar {
+      margin-right: 10px;
+    }
+    
+    > .hero-info {
+      flex-grow: 2;
+      display: flex;
+      flex-direction: column;
+      
+      > .text {
+      
+      }
+      
+      .number {
+        font-weight: bold;
+      }
+      
+      > .name {
+        font-weight: bold;
+      }
+    }
+  }
+  
+  > .hero-item:hover {
+    background-color: #d6e6ff;
+  }
+}

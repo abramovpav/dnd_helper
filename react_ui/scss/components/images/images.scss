@@ -1,0 +1,11 @@
+.fake-hero-avatar {
+  height: 50px;
+  width: 50px;
+  border-radius: 30px;
+  background-color: $main-blue-color;
+}
+
+.fake-hero-avatar.big {
+  height: 200px;
+  width: 200px;
+}

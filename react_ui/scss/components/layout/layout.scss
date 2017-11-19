@@ -1,0 +1,16 @@
+.page-container {
+  display: flex;
+  flex-direction: column;
+  
+  > .page-header {
+    font-weight: bold;
+    font-size: 24px;
+    padding: 35px;
+    text-align: center;
+  }
+  
+  > .page-content {
+    flex-grow: 2;
+    //padding: 35px;
+  }
+}

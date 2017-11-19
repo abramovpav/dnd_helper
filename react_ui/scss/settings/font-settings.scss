@@ -1,6 +1,33 @@
 @font-face {
   font-family: 'Museo Sans';
-  src: url("/static/fonts/MuseoSans_500.otf");
+  src: url("/static/fonts/Museo-Sans-Cyr/MuseoSansCyrl.otf");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Museo Sans';
+  src: url("/static/fonts/Museo-Sans-Cyr/MuseoSansCyrl_0.otf");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Museo Sans';
+  src: url("/static/fonts/Museo-Sans-Cyr/MuseoSansCyrl_1.otf");
   font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {  font-family: 'Museo Sans';
+  src: url("/static/fonts/Museo-Sans-Cyr/MuseoSansCyrl_2.otf");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Museo Sans';
+  src: url("/static/fonts/Museo-Sans-Cyr/MuseoSansCyrl_3.otf");
+  font-weight: 900;
   font-style: normal;
 }
