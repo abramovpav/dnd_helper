@@ -3,6 +3,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 from django.urls import reverse
 from django.views.generic import TemplateView
+from rest_framework import viewsets
+
+from dnd.models import Hero
+from dnd.serializers import HeroSerializer
 
 
 class DnDHelperMainView(LoginRequiredMixin, TemplateView):
@@ -17,3 +21,9 @@ class DnDHelperMainView(LoginRequiredMixin, TemplateView):
         }
         kwargs.update(ctx)
         return super(DnDHelperMainView, self).get_context_data(**kwargs)
+
+
+# api
+class HeroesViewSet(viewsets.ModelViewSet):
+    queryset = Hero.objects.all()
+    serializer_class = HeroSerializer

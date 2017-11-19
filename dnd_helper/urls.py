@@ -22,6 +22,7 @@ from django.views.generic import TemplateView, RedirectView
 from auth.forms import DnDAuthenticationForm
 from dnd.views import DnDHelperMainView
 from dnd_helper import settings
+from dnd.urls import urlpatterns as dnd_urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -30,8 +31,10 @@ urlpatterns = [
     url(r'^favicon\.ico$', RedirectView.as_view(url='/static/images/favicon.ico')),
     url(r'^r/login/$', LoginView.as_view(authentication_form=DnDAuthenticationForm, template_name='auth/login.html'), name='dnd-login'),
     url(r'^r/.*$', DnDHelperMainView.as_view(), name='react-application'),
-    url(r'^', TemplateView.as_view(template_name="base/index.html"))
+    url(r'^$', TemplateView.as_view(template_name="base/index.html"))
 ]
+
+urlpatterns += dnd_urls
 
 if settings.DEBUG:
     urlpatterns += staticfiles_urlpatterns()
