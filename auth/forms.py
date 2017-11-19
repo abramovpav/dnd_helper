@@ -9,7 +9,7 @@ class DnDAuthenticationForm(AuthenticationForm):
         self.fields['username'].widget.attrs['class'] = 'input-control'
         self.fields['password'].widget.attrs['class'] = 'input-control'
 
-    next = forms.CharField(widget=forms.HiddenInput(), initial='/r')
+    next = forms.CharField(widget=forms.HiddenInput(), initial='/r/')
 
     error_messages = {
         'invalid_login': (

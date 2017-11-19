@@ -12,6 +12,7 @@
     <hr class="div-line"/>
     <form method="post">
       {% csrf_token %}
+      {{ form.next }}
       <div class="form-row">
       {{ form.non_field_errors }}
       </div>
