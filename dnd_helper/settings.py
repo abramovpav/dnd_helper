@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'auth',
     'core',
-    'dnd'
+    'dnd',
+    'dnd_library'
 ]
 
 MIDDLEWARE = [
