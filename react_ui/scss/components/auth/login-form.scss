@@ -5,6 +5,9 @@
 
   > .login-form {
     margin: auto;
+    padding: 25px;
+    border: 1px solid $grey-border-color;
+    border-radius: $border-radius;
     
     >.login-form-title {
       font-size: 23px;

@@ -4,9 +4,10 @@
   "description": "Helper for party in DnD",
   "main": "main.js",
   "scripts": {
-    "start": "watchify -e src/main.js -v -t [ babelify ] -o ../static/build/bundle.js",
+    "watch-js": "watchify -e src/main.js -v -t [ babelify ] -o ../static/build/bundle.js",
     "build-css": "node-sass --include-path scss scss/bundle.scss   ../static/build/bundle.css",
-    "watch-css": "nodemon -e scss -x \"npm run build-css\""
+    "watch-css": "nodemon -e scss -x \"npm run build-css\"",
+    "dev": "npm-run-all --parallel watch-js watch-css"
   },
   "author": "Pavel Abramau",
   "license": "ISC",
@@ -30,6 +31,7 @@
     "babelify": "^8.0.0",
     "node-sass": "^4.7.1",
     "nodemon": "^1.12.1",
+    "npm-run-all": "^4.1.2",
     "react": "^16.1.0",
     "react-dom": "^16.1.0",
     "watchify": "^3.9.0"
