@@ -1,6 +1,11 @@
 {
   "name": "dnd_helper",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "private": true,
+  "author": {
+    "name": "Pavel Abramau",
+    "email": "abramovpav@gmail.com"
+  },
   "description": "Helper for party in DnD",
   "main": "main.js",
   "scripts": {
@@ -9,8 +14,6 @@
     "watch-css": "nodemon -e scss -x \"npm run build-css\"",
     "dev": "npm-run-all --parallel watch-js watch-css"
   },
-  "author": "Pavel Abramau",
-  "license": "ISC",
   "dependencies": {
     "axios": "^0.17.1",
     "babel-core": "^6.26.0",

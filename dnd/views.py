@@ -6,7 +6,7 @@ from django.views.generic import TemplateView
 from rest_framework import viewsets
 
 from dnd.models import Hero
-from dnd.serializers import HeroSerializer
+from dnd.serializers import HeroSerializer, FullHeroSerializer
 
 
 class DnDHelperMainView(LoginRequiredMixin, TemplateView):
@@ -27,3 +27,9 @@ class DnDHelperMainView(LoginRequiredMixin, TemplateView):
 class HeroesViewSet(viewsets.ModelViewSet):
     queryset = Hero.objects.all()
     serializer_class = HeroSerializer
+
+
+class HeroViewSet(viewsets.ModelViewSet):
+    queryset = Hero.objects.all()
+    serializer_class = FullHeroSerializer
+

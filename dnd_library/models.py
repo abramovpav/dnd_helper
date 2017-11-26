@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.db import models
 
 # Create your models here.
-
+from rest_framework.fields import JSONField
 
 SMALL, MEDIUM, BIG, GIGANTIC = 'small', 'medium', 'big', 'gigantic'
 VISION_CHOICES = (
@@ -26,3 +26,9 @@ class Race(models.Model):
     abilities = models.CharField(max_length=128)
     traits = models.CharField(max_length=128)
 
+
+class InventoryItem(models.Model):
+    name = models.CharField(max_length=64)
+    description = models.TextField(max_length=512, default='')
+    notes = models.TextField(max_length=512, blank=True, default='')
+    data = JSONField(default={})
