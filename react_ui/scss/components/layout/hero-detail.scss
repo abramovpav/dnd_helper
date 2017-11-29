@@ -2,10 +2,6 @@
   display: flex;
   flex-direction: row;
   
-  > .hero-avatar {
-    margin-right: 10px;
-  }
-  
   > .general-info {
     flex-grow: 2;
     display: flex;
@@ -16,4 +12,28 @@
 .abilities-list {
   display: flex;
   flex-direction: row;
+}
+
+.hero-navigation-bar {
+  display: flex;
+  flex-direction: row;
+  
+  > .nav-element {
+    flex-grow: 1;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+    
+    > .container {
+      text-align: center;
+      
+      img {
+        width: 35px;
+        margin: auto;
+      }
+      
+      display: flex;
+      flex-direction: column;
+    }
+  };
 }

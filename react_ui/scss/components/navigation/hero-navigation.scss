@@ -1,0 +1,10 @@
+.navbar-top {
+  height: 40px;
+  border-bottom: 1px solid black;
+  display: flex;
+  flex-direction: row;
+
+  >.nav-element {
+    margin: auto 10px;
+  }
+}

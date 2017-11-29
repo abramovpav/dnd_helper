@@ -32,3 +32,8 @@ class InventoryItem(models.Model):
     description = models.TextField(max_length=512, default='')
     notes = models.TextField(max_length=512, blank=True, default='')
     data = JSONField(default={})
+
+
+class Skills(models.Model):
+    name = models.CharField(max_length=64)
+    description = models.CharField(max_length=128)

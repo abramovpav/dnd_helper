@@ -14,7 +14,7 @@ class Hero(models.Model):
     organization = models.CharField(max_length=40)
     strength = models.PositiveSmallIntegerField()
     constitution = models.PositiveSmallIntegerField()
-    agility = models.PositiveSmallIntegerField()
+    dexterity = models.PositiveSmallIntegerField()
     intelligence = models.PositiveSmallIntegerField()
     wisdom = models.PositiveSmallIntegerField()
     charisma = models.PositiveSmallIntegerField()
