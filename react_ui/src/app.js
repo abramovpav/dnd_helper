@@ -7,8 +7,8 @@ import { ConnectedRouter, routerMiddleware, push } from 'react-router-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 
-import Dashboard from './components/dashboard';
-import HeroDetail from './components/hero-detail';
+import Dashboard from './pages/Dashboard';
+import HeroDetail from './pages/HeroDetail';
 import reducer from './reducers/reducers';
 import NavBarTop from './components/navigation/navbar-top';
 

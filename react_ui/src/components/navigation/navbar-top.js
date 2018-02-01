@@ -6,10 +6,6 @@ import DnDProvider from '../../providers/dnd';
 
 
 class NavBarTop extends Component {
-  componentDidMount() {
-    this.props.DnDProvider.getHeroes();
-  }
-
   render() {
     return (
       <div className="navbar-top">
