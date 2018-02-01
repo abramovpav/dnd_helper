@@ -14,7 +14,9 @@ class HeroDetail extends Component {
   }
 
   render() {
-    const { hero, loading } = this.props;
+    const { heroes, hero, loading = true } = this.props;
+    const { race = {} } = hero;
+
     return (
       <div className="page-container hero-detail">
         <div className="page-header">Hero&apos;s Profile</div>
@@ -23,7 +25,7 @@ class HeroDetail extends Component {
             <div className="general-data">
               <div className="general-info">
                 <div className="name text">{hero.fullName}</div>
-                <div className="text">Race: <span className="number">{hero.race}</span></div>
+                <div className="text">Race: <span className="number">{race.name}</span></div>
                 <div className="text">Level: <span className="number">{hero.level}</span></div>
               </div>
               <Tabs>
@@ -69,8 +71,9 @@ class HeroDetail extends Component {
 
 export default connect(
   (state, props) => ({
+    heroes: state.dnd.heroes,
     hero: state.dnd.heroes.objects[props.match.params.id] || {},
-    loading: state.dnd.heroes.loading || false,
+    loading: state.dnd.heroes.loading,
   }),
   dispatch => ({
     getHero: heroId => new DnDProvider(dispatch).getHero(heroId),

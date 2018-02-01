@@ -4,12 +4,13 @@ import PropTypes from 'prop-types';
 
 class LoadingWrapper extends Component {
   static propTypes = {
-    isLoading: PropTypes.bool.isRequired,
+    isLoading: PropTypes.any.isRequired, // eslint-disable-line react/forbid-prop-types
   };
 
   render() {
     const { isLoading, children } = this.props;
-    if (isLoading) {
+
+    if (!(isLoading === false)) {
       return (
         <div className="loader-wrapper">
           <div className="loader loader-fixed">Loading...</div>

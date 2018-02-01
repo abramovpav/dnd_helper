@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from dnd.models import Hero, HeroInventory
+from dnd_library.models import Race
 
 
 class InventorySerializer(serializers.ModelSerializer):
@@ -21,12 +22,15 @@ class HeroSerializer(serializers.ModelSerializer):
         fields = ('id', 'full_name', 'race', 'level', 'experience', 'race')
 
 
-class FullHeroSerializer(serializers.ModelSerializer):
-    race = serializers.SerializerMethodField()
-    inventory = InventorySerializer()
+class RaceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Race
+        fields = ('id', 'name', 'size', 'speed', 'vision')
 
-    def get_race(self, obj):
-        return obj.race.name
+
+class FullHeroSerializer(serializers.ModelSerializer):
+    race = RaceSerializer()
+    inventory = InventorySerializer()
 
     class Meta:
         model = Hero

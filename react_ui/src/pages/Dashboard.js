@@ -22,7 +22,7 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { heroes, loading } = this.props;
+    const { heroes, loading = true } = this.props;
     return (
       <div className="page-container dashboard">
         <div className="page-header">Dashboard</div>
@@ -35,7 +35,7 @@ class Dashboard extends Component {
                     <div className="hero-avatar"><div className="fake-hero-avatar" /></div>
                     <div className="hero-info">
                       <div className="name text">{ hero.fullName }</div>
-                      <div className="text">Race: <span className="number">{ hero.race }</span></div>
+                      <div className="text">Race: <span className="number">{ hero.race.name }</span></div>
                       <div className="text">Level: <span className="number">{ hero.level }</span></div>
                     </div>
                   </div>
@@ -52,7 +52,7 @@ class Dashboard extends Component {
 export default connect(
   state => ({
     heroes: state.dnd.heroes.objects,
-    loading: state.dnd.heroes.loading || false,
+    loading: state.dnd.heroes.loading,
   }),
   dispatch => ({
     dnDProvider: new DnDProvider(dispatch),

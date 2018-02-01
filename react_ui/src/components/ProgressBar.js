@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 class ProgressBar extends Component {
   static propTypes = {
+    // eslint-disable-next-line consistent-return
     completed: ((props, propName) => {
       if (typeof props[propName] !== 'number') {
         return ProgressBar.throwError('Invalid Props: "completed" should ∈ ℝ ');
