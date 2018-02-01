@@ -1,59 +1,53 @@
 import React, { Component } from 'react';
-import cookie from 'react-cookies'
-import {BASE_API_URL} from "../context";
+import cookie from 'react-cookies';
 import axios from 'axios';
+
+import { BASE_API_URL } from '../context';
 
 
 export default class DataProvider {
   constructor(dispatch) {
-    this._dispatch = dispatch;
+    this.dispatch = dispatch;
     this.client = axios.create({
       baseURL: BASE_API_URL,
       timeout: 1000,
-      headers: this.baseHeaders(),
-      validateStatus: (status) => status < 500
+      headers: DataProvider.baseHeaders(),
+      validateStatus: status => status < 500,
     });
   }
 
-  baseHeaders() {
+  static baseHeaders() {
     return {
       'Content-Type': 'application/json',
-      'Accept': 'application/json',
+      Accept: 'application/json',
       'X-CSRFToken': cookie.load('csrftoken'),
     };
-  };
+  }
 
-  reduceResponse(response) {
+  static reduceResponse(response) {
     return {
       data: response.data,
-      status: response.status
-    }
+      status: response.status,
+    };
   }
 
   get(url) {
-    return this.client.get(url).then(
-      response => {
-        if (response.status >= 200 && response.status < 300) {
-          return this.reduceResponse(response)
-        } else {
-          console.log('get.reject', response);
-          return Promise.reject(this.reduceResponse(response))
-        }
-      })
-      .catch((response) => {
-        console.log('get.catch', response);
-        return Promise.reject({status: response.status})
+    return this.client.get(url).then((response) => {
+      if (response.status >= 200 && response.status < 300) {
+        return DataProvider.reduceResponse(response);
       }
-    )
+      return Promise.reject(DataProvider.reduceResponse(response));
+    })
+      .catch(response => Promise.reject({ status: response.status }));
   }
 
 
   dispatch(action, payload) {
-    const _action = Object.assign({
+    const newAction = Object.assign({
       type: action,
-      payload
+      payload,
     });
 
-    this._dispatch(_action);
+    this.dispatch(newAction);
   }
 }

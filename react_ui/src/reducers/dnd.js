@@ -1,15 +1,14 @@
-const initialState = {heroes: []};
+const initialState = { heroes: [] };
 
-export default function(state=initialState, action) {
-  switch(action.type) {
+export default function (state = initialState, action) {
+  switch (action.type) {
     case 'GET_HEROES_SUCCESS':
       return {
         ...state,
-        heroes: action.payload
+        heroes: action.payload,
       };
     default:
       return state;
   }
-};
-
+}
 

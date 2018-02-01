@@ -7,16 +7,15 @@
     "watch-js": "watchify -e src/main.js -v -t [ babelify ] -o ../static/build/bundle.js",
     "build-css": "node-sass --include-path scss scss/bundle.scss   ../static/build/bundle.css",
     "watch-css": "nodemon -e scss -x \"npm run build-css\"",
-    "dev": "npm-run-all --parallel watch-js watch-css"
+    "dev": "npm-run-all --parallel watch-js watch-css",
+    "lint": "eslint ./src --ext js",
+    "lint-fix": "eslint ./src --fix --ext js"
   },
   "author": "Pavel Abramau",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.17.1",
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-stage-2": "^6.24.1",
+    "lodash": "^4.17.4",
     "history": "^4.7.2",
     "prop-types": "^15.6.0",
     "react-cookies": "^0.1.0",
@@ -26,19 +25,96 @@
     "react-router-redux": "^5.0.0-alpha.6",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "react": "^16.1.0",
+    "react-dom": "^16.1.0",
+    "moment": "^2.19.2",
+    "moment-timezone": "^0.5.14"
   },
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.2",
+    "babel-loader": "^7.1.2",
     "babel-plugin-syntax-object-rest-spread": "^6.13.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
     "babelify": "^8.0.0",
+    "eslint": "^4.11.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.5.1",
     "node-sass": "^4.7.1",
     "nodemon": "^1.12.1",
     "npm-run-all": "^4.1.2",
-    "react": "^16.1.0",
-    "react-dom": "^16.1.0",
     "watchify": "^3.9.0"
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "plugins": [
+      "react"
+    ],
+    "env": {
+      "es6": true,
+      "browser": true,
+      "node": true
+    },
+    "extends": "airbnb",
+    "settings": {
+      "react": {
+        "pragma": "React",
+        "version": "16.0"
+      }
+    },
+    "rules": {
+      "no-unused-vars": [
+        0
+      ],
+      "react/prop-types": [
+        0
+      ],
+      "react/prefer-stateless-function": [
+        0
+      ],
+      "prefer-promise-reject-errors": [
+        0
+      ],
+      "jsx-a11y/click-events-have-key-events": [
+        0
+      ],
+      "jsx-a11y/no-static-element-interactions": [
+        0
+      ],
+      "max-len": [
+        "error",
+        120,
+        2,
+        {
+          "ignoreUrls": true,
+          "ignoreComments": false,
+          "ignoreRegExpLiterals": true,
+          "ignoreStrings": true,
+          "ignoreTemplateLiterals": true
+        }
+      ],
+      "react/jsx-filename-extension": [
+        1,
+        {
+          "extensions": [
+            ".js",
+            ".jsx"
+          ]
+        }
+      ]
+    }
   }
 }

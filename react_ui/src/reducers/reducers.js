@@ -1,8 +1,10 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
+import { routerReducer } from 'react-router-redux';
+
 import dnd from './dnd';
-import {routerReducer} from 'react-router-redux';
+
 
 export default combineReducers({
   dnd,
-  router: routerReducer
+  router: routerReducer,
 });
