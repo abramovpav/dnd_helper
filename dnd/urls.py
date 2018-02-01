@@ -5,5 +5,6 @@ from auth.views import AuthView
 from dnd.views import HeroesViewSet
 
 urlpatterns = [
-    url(r'^api/heroes/$', HeroesViewSet.as_view({'get': 'list', 'post': 'create'}))
+    url(r'^api/heroes/$', HeroesViewSet.as_view({'get': 'list', 'post': 'create'})),
+    url(r'^api/heroes/(?P<pk>\d+)$', HeroesViewSet.as_view({'get': 'retrieve'})),
 ]
