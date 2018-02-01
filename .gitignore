@@ -14,4 +14,8 @@ react_ui/node_modules/
 
 static/build/
 
+# vagrant
+
 .vagrant/
+
+*.log
