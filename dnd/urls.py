@@ -6,5 +6,5 @@ from dnd.views import HeroesViewSet, HeroViewSet
 
 urlpatterns = [
     url(r'^api/heroes/$', HeroesViewSet.as_view({'get': 'list', 'post': 'create'})),
-    url(r'^api/heroes/(?P<pk>\d+)$', HeroViewSet.as_view({'get': 'retrieve'}))
+    url(r'^api/heroes/(?P<pk>\d+)$', HeroViewSet.as_view({'get': 'retrieve'})),
 ]

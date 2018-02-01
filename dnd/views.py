@@ -32,4 +32,3 @@ class HeroesViewSet(viewsets.ModelViewSet):
 class HeroViewSet(viewsets.ModelViewSet):
     queryset = Hero.objects.all()
     serializer_class = FullHeroSerializer
-

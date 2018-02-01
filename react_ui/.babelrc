@@ -1,7 +1,8 @@
 {
   "presets": [
     "es2015",
+    "stage-2",
     "react"
   ],
-  "plugins": ["syntax-object-rest-spread", "transform-object-rest-spread"]
+  "plugins": ["syntax-object-rest-spread", "transform-object-rest-spread", "transform-decorators-legacy"]
 }

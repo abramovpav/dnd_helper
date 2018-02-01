@@ -1,13 +1,11 @@
-import React, {Component} from 'react';
-import {NavLink} from 'react-router-dom';
-import DnDProvider from "../../providers/dnd";
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import DnDProvider from '../../providers/dnd';
+
 
 class NavBarTop extends Component {
-  componentDidMount() {
-    this.props.DnDProvider.getHeroes();
-  }
-
   render() {
     return (
       <div className="navbar-top">
@@ -25,6 +23,6 @@ class NavBarTop extends Component {
 export default connect(
   state => ({}),
   dispatch => ({
-    DnDProvider: new DnDProvider(dispatch)
-  })
+    DnDProvider: new DnDProvider(dispatch),
+  }),
 )(NavBarTop);
