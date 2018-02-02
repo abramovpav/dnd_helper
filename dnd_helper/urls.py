@@ -23,6 +23,7 @@ from auth.forms import DnDAuthenticationForm
 from dnd.views import DnDHelperMainView
 from dnd_helper import settings
 from dnd.urls import urlpatterns as dnd_urls
+from dnd_library.urls import urlpatterns as dnd_library_urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -35,6 +36,7 @@ urlpatterns = [
 ]
 
 urlpatterns += dnd_urls
+urlpatterns += dnd_library_urls
 
 if settings.DEBUG:
     urlpatterns += staticfiles_urlpatterns()

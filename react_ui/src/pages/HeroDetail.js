@@ -6,11 +6,13 @@ import Loader from '../components/LoadingWrapper';
 import DnDProvider from '../providers/dnd';
 import HPBar from '../components/HPBar';
 import HeroStatsTab from '../components/hero-tabs/HeroStatsTab';
+import HeroSpellsTab from '../components/hero-tabs/HeroSpellsTab';
 
 
 class HeroDetail extends Component {
   componentWillMount() {
-    this.props.getHero(this.props.match.params.id);
+    const { id: heroId } = this.props.match.params;
+    this.props.getHero(heroId).then(() => this.props.getHeroSpells(heroId));
   }
 
   render() {
@@ -46,7 +48,7 @@ class HeroDetail extends Component {
                   <h2>Any content 2</h2>
                 </TabPanel>
                 <TabPanel>
-                  <h2>Any content 3</h2>
+                  <HeroSpellsTab hero={hero} />
                 </TabPanel>
                 <TabPanel>
                   <h2>Any content 4</h2>
@@ -77,5 +79,6 @@ export default connect(
   }),
   dispatch => ({
     getHero: heroId => new DnDProvider(dispatch).getHero(heroId),
+    getHeroSpells: heroId => new DnDProvider(dispatch).getHeroSpells(heroId),
   }),
 )(HeroDetail);

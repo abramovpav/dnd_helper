@@ -18,6 +18,14 @@ export default function (state = initialState, action) {
           loading: true,
         },
       };
+    case 'GET_HERO_SPELLS':
+      return {
+        ...state,
+        heroes: {
+          ...state.heroes,
+          loading: true,
+        },
+      };
     case 'GET_HEROES_SUCCESS':
       return {
         ...state,
@@ -37,6 +45,20 @@ export default function (state = initialState, action) {
           objects: {
             ...state.heroes.objects,
             [action.payload.id]: action.payload,
+          },
+        },
+      };
+    case 'GET_HERO_SPELLS_SUCCESS':
+      return {
+        ...state,
+        heroes: {
+          loading: false,
+          objects: {
+            ...state.heroes.objects,
+            [action.payload.heroId]: {
+              ...state.heroes.objects[action.payload.heroId],
+              spells: action.payload.spells,
+            },
           },
         },
       };

@@ -1,16 +1,31 @@
 .page-container {
   display: flex;
   flex-direction: column;
-  
+
   > .page-header {
     font-weight: bold;
     font-size: 24px;
     padding: 35px;
     text-align: center;
   }
-  
+
   > .page-content {
     flex-grow: 2;
     //padding: 35px;
+  }
+}
+
+
+.spell-box {
+  > .title {
+    background-color: lightgreen;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+  }
+
+  > .description {
+    padding: 5px;
+    background-color: ghostwhite;
   }
 }

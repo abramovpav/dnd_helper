@@ -4,6 +4,7 @@ Django==1.11.7
 djangorestframework==3.7.3
 djangorestframework-camel-case==0.2.0
 enum34==1.1.6
+funcy==1.10
 ipython==5.5.0
 ipython-genutils==0.2.0
 pathlib2==2.3.0
