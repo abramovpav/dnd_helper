@@ -162,3 +162,6 @@ REST_FRAMEWORK = {
         # Any other parsers
     ),
 }
+
+
+MAX_DAMAGE_TO_HERO = 99999999

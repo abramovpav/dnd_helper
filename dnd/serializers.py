@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from dnd.models import Hero, HeroInventory
+from dnd_helper import settings
 from dnd_library.models import Race
 
 
@@ -35,8 +36,19 @@ class FullHeroSerializer(serializers.ModelSerializer):
     class Meta:
         model = Hero
         fields = ('id', 'first_name', 'last_name', 'age', 'height', 'weight', 'organization', 'race', 'strength',
-                  'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma', 'experience', 'hit_points',
-                  'hp_per_lvl', 'hp_bonus', 'armor', 'armor_modifier', 'shield', 'fortitude_modifier',
-                  'reflex_modifier', 'will_modifier', 'full_name', 'level', 'armor_class', 'fortitude', 'reflex',
-                  'will', 'max_hp', 'inventory')
+                  'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma', 'experience', 'damage_taken',
+                  'hp_per_lvl', 'hp_permanent_bonus', 'hp_tmp_bonus', 'armor', 'armor_modifier', 'shield',
+                  'fortitude_modifier', 'reflex_modifier', 'will_modifier', 'full_name', 'level', 'armor_class',
+                  'fortitude', 'reflex', 'will', 'max_hp', 'inventory')
 
+
+class CommitDamageSerializer(serializers.Serializer):
+    # TODO: validate damage
+    damage_value = serializers.IntegerField(min_value=0, max_value=settings.MAX_DAMAGE_TO_HERO)
+
+    def update(self, instance, validated_data):
+        damage_value = validated_data['damage_value']
+
+        instance.damage_taken += damage_value
+        instance.save()
+        return instance

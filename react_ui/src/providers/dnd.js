@@ -9,7 +9,7 @@ export default class DnDProvider extends DataProvider {
       type: 'GET_HEROES_SUCCESS',
       payload: response.data,
     }), (response) => {
-      console.log('DnDProvider.getHeroes.reject', response.status);
+      console.log('DnDProvider.getHeroes.reject', response.status); // eslint-disable-line no-console
     }));
   }
 
@@ -21,7 +21,7 @@ export default class DnDProvider extends DataProvider {
       type: 'GET_HERO_SUCCESS',
       payload: response.data,
     }), (response) => {
-      console.log('DnDProvider.getHero.reject', response.status);
+      console.log('DnDProvider.getHero.reject', response.status); // eslint-disable-line no-console
     }));
   }
 
@@ -36,7 +36,27 @@ export default class DnDProvider extends DataProvider {
         spells: response.data,
       },
     }), (response) => {
-      console.log('DnDProvider.getHeroSpells.reject', response.status);
+      console.log('DnDProvider.getHeroSpells.reject', response.status); // eslint-disable-line no-console
+    }));
+  }
+
+  commitHeroDamage(heroId, damageValue) {
+    this.dispatch({
+      type: 'PUT_COMMIT_DAMAGE',
+    });
+    return this.dispatch(dispatch => this.put(`/heroes/${heroId}/damage/`, { damageValue }).then(response => dispatch({
+      type: 'PUT_COMMIT_DAMAGE_SUCCESS',
+      payload: {
+        heroId,
+        damageValue: response.data.totalDamage,
+        committedDamage: response.data.committedDamage,
+      },
+    }), (response) => {
+      console.log('DnDProvider.getHeroSpells.reject', response.status); // eslint-disable-line no-console
+      this.dispatch({
+        type: 'PUT_COMMIT_DAMAGE_FAILURE',
+        response,
+      });
     }));
   }
 }

@@ -36,6 +36,11 @@
   background-color: $dark-blue-color;
 }
 
+.btn.red {
+  background-color: $main-red-color;
+  color: white;
+  border-color: $main-red-color;
+}
 
 .btn.wide {
   width: 100%;

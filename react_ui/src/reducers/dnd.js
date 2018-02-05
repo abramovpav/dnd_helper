@@ -62,6 +62,20 @@ export default function (state = initialState, action) {
           },
         },
       };
+    case 'PUT_COMMIT_DAMAGE_SUCCESS':
+      return {
+        ...state,
+        heroes: {
+          loading: false,
+          objects: {
+            ...state.heroes.objects,
+            [action.payload.heroId]: {
+              ...state.heroes.objects[action.payload.heroId],
+              damageTaken: action.payload.damageValue,
+            },
+          },
+        },
+      };
     default:
       return state;
   }

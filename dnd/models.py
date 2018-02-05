@@ -38,9 +38,10 @@ class Hero(CoreSoftDeletionModel):
     # current stats
 
     experience = models.IntegerField(default=0)
-    hit_points = models.IntegerField(default=0)
+    damage_taken = models.IntegerField(default=0)
     hp_per_lvl = models.PositiveSmallIntegerField(default=0)
-    hp_bonus = models.PositiveSmallIntegerField(default=0)
+    hp_permanent_bonus = models.PositiveSmallIntegerField(default=0)
+    hp_tmp_bonus = models.PositiveSmallIntegerField(default=0)
 
     # defense
 
@@ -94,8 +95,12 @@ class Hero(CoreSoftDeletionModel):
         return BASE_DEFENCE_VALUE + (self.level / 2) + max_modifier + self.will_modifier
 
     @property
+    def hit_points(self):
+        return self.max_hp - self.damage_taken + self.hp_tmp_bonus
+
+    @property
     def max_hp(self):
-        return BASE_HP_VALUE + self.constitution + ((self.level - 1) * self.hp_per_lvl) + self.hp_bonus
+        return BASE_HP_VALUE + self.constitution + ((self.level - 1) * self.hp_per_lvl) + self.hp_permanent_bonus
 
     def ability_modifier(self, ability_name):
         return (getattr(self, ability_name, 0) - 10) / 2
