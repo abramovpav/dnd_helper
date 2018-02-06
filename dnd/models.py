@@ -5,7 +5,7 @@ from django.db import models
 
 from core.models import CoreSoftDeletionModel
 from core.orm_utils import CoreModel
-from dnd_library.constants import DEFAULT_STATS_VALUE, BASE_DEFENCE_VALUE, BASE_HP_VALUE, HeroStats
+from dnd_library.constants import DEFAULT_STATS_VALUE, BASE_DEFENCE_VALUE, HeroStats
 from dnd_library.models import Race, Spell, HeroClass
 from dnd_library.utils import get_level_by_experience
 
@@ -42,6 +42,7 @@ class Hero(CoreSoftDeletionModel):
     hp_per_lvl = models.PositiveSmallIntegerField(default=0)
     hp_permanent_bonus = models.PositiveSmallIntegerField(default=0)
     hp_tmp_bonus = models.PositiveSmallIntegerField(default=0)
+    healings_used = models.PositiveSmallIntegerField(default=0)
 
     # defense
 
@@ -100,7 +101,17 @@ class Hero(CoreSoftDeletionModel):
 
     @property
     def max_hp(self):
-        return BASE_HP_VALUE + self.constitution + ((self.level - 1) * self.hp_per_lvl) + self.hp_permanent_bonus
+        hp_for_level = ((self.level - 1) * self.hp_per_lvl)
+        return self.hero_class.base_hp + self.constitution + hp_for_level + self.hp_permanent_bonus
+
+    @property
+    def healing_value(self):
+        healing_bonus = self.ability_modifier(HeroStats.CONSTITUTION)  # TODO: fix to use traits and class feature
+        return self.max_hp / 4 + healing_bonus
+
+    @property
+    def healing_max_count(self):
+        return self.hero_class.healing_count + self.ability_modifier(self.hero_class.healing_depends_on)
 
     def ability_modifier(self, ability_name):
         return (getattr(self, ability_name, 0) - 10) / 2

@@ -20,16 +20,24 @@ class HeroStatsTab extends Component {
 
     this.state = {
       damageValue: 0,
+      healValue: 0,
     };
 
     this.onHandleChange = this.onHandleChange.bind(this);
     this.onCommitDamage = this.onCommitDamage.bind(this);
+    this.onCommitHeal = this.onCommitHeal.bind(this);
   }
 
   onCommitDamage() {
     const { hero } = this.props;
     const { damageValue } = this.state;
-    this.props.commitHeroDamage(hero.id, damageValue);
+    this.props.commitHeroDamage(hero.id, damageValue).then(() => this.setState({ damageValue: 0 }));
+  }
+
+  onCommitHeal() {
+    const { hero } = this.props;
+    const { healValue } = this.state;
+    this.props.commitHeroHeal(hero.id, healValue).then(() => this.setState({ healValue: 0 }));
   }
 
   onHandleChange(event) {
@@ -42,7 +50,7 @@ class HeroStatsTab extends Component {
 
   render() {
     const { hero } = this.props;
-    const { damageValue } = this.state;
+    const { damageValue, healValue } = this.state;
     return (
       <div>
         <h2>Hit Points</h2>
@@ -52,8 +60,17 @@ class HeroStatsTab extends Component {
           Damage Taken: {hero.damageTaken}
         </div>
         <div>
+          <h3>Damage</h3>
           <input type="number" name="damageValue" value={damageValue} onChange={this.onHandleChange} required />
           <button className="btn red" onClick={this.onCommitDamage}>Commit</button>
+        </div>
+        <div>
+          <h3>Healing</h3>
+          <div>
+            Healing value: {hero.healingValue} ({hero.healingMaxCount - hero.healingsUsed}/{hero.healingMaxCount})
+          </div>
+          <input type="number" name="healValue" value={healValue} onChange={this.onHandleChange} required />
+          <button className="btn green" onClick={this.onCommitHeal}>Commit Heal</button>
         </div>
         <h2>Ability Scores, Savings Throw, and Other Stats</h2>
         <div>
@@ -61,12 +78,12 @@ class HeroStatsTab extends Component {
           core modifier and Proficiency Bonus.
         </div>
         <ul>
-          <li>Strength {hero.strength}</li>
-          <li>Dexterity {hero.dexterity}</li>
-          <li>Constitution {hero.constitution}</li>
-          <li>Intelligence {hero.intelligence}</li>
-          <li>Wisdom {hero.wisdom}</li>
-          <li>Charisma {hero.charisma}</li>
+          <li>Strength {hero.strength} (<b>{HeroUtils.getAbilityModifier(hero, 'strength')}</b>)</li>
+          <li>Dexterity {hero.dexterity} (<b>{HeroUtils.getAbilityModifier(hero, 'dexterity')}</b>)</li>
+          <li>Constitution {hero.constitution} (<b>{HeroUtils.getAbilityModifier(hero, 'constitution')}</b>)</li>
+          <li>Intelligence {hero.intelligence} (<b>{HeroUtils.getAbilityModifier(hero, 'intelligence')}</b>)</li>
+          <li>Wisdom {hero.wisdom} (<b>{HeroUtils.getAbilityModifier(hero, 'wisdom')}</b>)</li>
+          <li>Charisma {hero.charisma} (<b>{HeroUtils.getAbilityModifier(hero, 'charisma')}</b>)</li>
         </ul>
         <h2>Defences</h2>
         <ul>
@@ -93,5 +110,6 @@ export default connect(
   }),
   dispatch => ({
     commitHeroDamage: (heroId, damageValue) => new DnDProvider(dispatch).commitHeroDamage(heroId, damageValue),
+    commitHeroHeal: (heroId, healValue) => new DnDProvider(dispatch).commitHeroHeal(heroId, healValue),
   }),
 )(HeroStatsTab);

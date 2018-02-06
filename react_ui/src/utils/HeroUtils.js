@@ -9,6 +9,10 @@ class HeroUtils {
 
     return Math.max(realHP, 0);
   }
+
+  static getAbilityModifier(hero, abilityName) {
+    return Math.floor((hero[abilityName] - 10) / 2);
+  }
 }
 
 export default HeroUtils;

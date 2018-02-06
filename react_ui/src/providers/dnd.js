@@ -52,9 +52,48 @@ export default class DnDProvider extends DataProvider {
         committedDamage: response.data.committedDamage,
       },
     }), (response) => {
-      console.log('DnDProvider.getHeroSpells.reject', response.status); // eslint-disable-line no-console
+      console.log('DnDProvider.commitHeroDamage.reject', response.status); // eslint-disable-line no-console
       this.dispatch({
         type: 'PUT_COMMIT_DAMAGE_FAILURE',
+        response,
+      });
+    }));
+  }
+
+  commitHeroHeal(heroId, healValue) {
+    this.dispatch({
+      type: 'PUT_COMMIT_HEAL',
+    });
+    return this.dispatch(dispatch => this.put(`/heroes/${heroId}/heal/`, { healValue }).then(response => dispatch({
+      type: 'PUT_COMMIT_HEAL_SUCCESS',
+      payload: {
+        heroId,
+        damageValue: response.data.totalDamage,
+        committedHeal: response.data.committedHeal,
+        healingsUsed: response.data.healingsUsed,
+      },
+    }), (response) => {
+      console.log('DnDProvider.commitHeroHeal.reject', response.status); // eslint-disable-line no-console
+      this.dispatch({
+        type: 'PUT_COMMIT_HEAL_FAILURE',
+        response,
+      });
+    }));
+  }
+
+  commitHeroRest(heroId, restType) {
+    this.dispatch({
+      type: 'POST_COMMIT_REST',
+    });
+    return this.dispatch(dispatch => this.post(`/heroes/${heroId}/rest/`, { restType }).then(response => dispatch({
+      type: 'POST_COMMIT_REST_SUCCESS',
+      payload: {
+        ...response.data,
+      },
+    }), (response) => {
+      console.log('DnDProvider.commitHeroRest.reject', response.status); // eslint-disable-line no-console
+      this.dispatch({
+        type: 'POST_COMMIT_REST_FAILURE',
         response,
       });
     }));

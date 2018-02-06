@@ -4,7 +4,8 @@ from __future__ import unicode_literals
 from django.contrib.postgres.fields import JSONField
 from django.db import models
 
-from dnd_library.constants import CreatureSize, CreatureVision, SpellUsageType, ActionType, RangeType, SpellType
+from dnd_library.constants import CreatureSize, CreatureVision, SpellUsageType, ActionType, RangeType, SpellType, \
+    HeroStats
 
 
 class Race(models.Model):
@@ -37,6 +38,15 @@ class Race(models.Model):
 
 class HeroClass(models.Model):
     name = models.CharField(max_length=16)
+    role = models.TextField(max_length=512)
+    power_source = models.TextField(max_length=1024)
+    description = models.TextField(max_length=1024)
+    base_hp = models.PositiveSmallIntegerField(default=1)
+    hp_depends_on = models.CharField(max_length=16, choices=HeroStats.choices())
+    hp_per_level = models.PositiveSmallIntegerField(default=0)
+    healing_count = models.PositiveSmallIntegerField(default=0)
+    healing_depends_on = models.CharField(max_length=16, choices=HeroStats.choices())
+    features = JSONField(default={})
 
     def __str__(self):
         return u'<HeroClass: {0}>'.format(self.name)

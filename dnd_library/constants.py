@@ -2,7 +2,6 @@ from core.utils.enum import Enum
 
 DEFAULT_STATS_VALUE = 10
 BASE_DEFENCE_VALUE = 10
-BASE_HP_VALUE = 15
 
 
 class CreatureSize(Enum):
@@ -93,3 +92,8 @@ class SpellType(Enum):
     ATTACK = 'attack'
     RITUAL = 'ritual'
     UTILITY = 'utility'
+
+
+class RestType(Enum):
+    SHORT = 'short'
+    LONG = 'long'

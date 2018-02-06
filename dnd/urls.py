@@ -8,5 +8,8 @@ urlpatterns = [
     url(r'^api/heroes/$', HeroesViewSet.as_view({'get': 'list', 'post': 'create'})),
     url(r'^api/heroes/(?P<pk>\d+)/$', HeroViewSet.as_view({'get': 'retrieve'})),
     url(r'^api/heroes/(?P<pk>\d+)/spells/$', HeroViewSet.as_view({'get': 'spells_list'})),
+    url(r'^api/heroes/(?P<pk>\d+)/rest/$', HeroViewSet.as_view({'post': 'apply_rest'})),
     url(r'^api/heroes/(?P<pk>\d+)/damage/$', HeroViewSet.as_view({'put': 'apply_damage'})),
+    url(r'^api/heroes/(?P<pk>\d+)/heal/$', HeroViewSet.as_view({'put': 'apply_heal'})),
+    url(r'^api/heroes/(?P<pk>\d+)/tmp-hp/$', HeroViewSet.as_view({'put': 'apply_tmp_hp'})),
 ]

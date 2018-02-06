@@ -15,13 +15,26 @@
   }
 }
 
-
 .spell-box {
   > .title {
-    background-color: lightgreen;
+    background-color: #f3f3f3;
     display: flex;
     justify-content: space-between;
     padding: 5px;
+  }
+
+  > .title.at-will {
+    background-color: lightgreen;
+  }
+
+  > .title.encounter {
+    background-color: $main-red-color;
+    color: white;
+  }
+
+  > .title.daily {
+    background-color: black;
+    color: white;
   }
 
   > .description {

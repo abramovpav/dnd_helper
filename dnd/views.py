@@ -8,7 +8,9 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from dnd.models import Hero
-from dnd.serializers import HeroSerializer, FullHeroSerializer, CommitDamageSerializer
+from dnd.serializers import HeroSerializer, FullHeroSerializer, CommitDamageSerializer, CommitHealSerializer, \
+    HeroRestSerializer, CommitTmpHpBonusSerializer
+from dnd_library.constants import RestType
 from dnd_library.serializers import SpellSerializer
 
 
@@ -59,12 +61,42 @@ class HeroViewSet(DnDBasicViewSet):
         serializer = SpellSerializer(queryset, many=True)
         return Response(serializer.data)
 
+    def apply_rest(self, request, pk):
+        hero = self.get_object()
+        serializer = HeroRestSerializer(instance=hero, data=request.data)
+        serializer.is_valid(raise_exception=True)
+        hero = serializer.save()
+
+        serializer = self.get_serializer(hero)
+        return Response(serializer.data)
+
     def apply_damage(self, request, pk):
         hero = self.get_object()
         serializer = CommitDamageSerializer(instance=hero, data=request.data)
         serializer.is_valid(raise_exception=True)
         hero = serializer.save()
-        return Response(status=status.HTTP_200_OK, data={
+        return Response({
             'committedDamage': serializer.validated_data['damage_value'],
             'totalDamage': hero.damage_taken,
+        })
+
+    def apply_heal(self, request, pk):
+        hero = self.get_object()
+        serializer = CommitHealSerializer(instance=hero, data=request.data)
+        serializer.is_valid(raise_exception=True)
+        hero = serializer.save()
+        return Response({
+            'committedHeal': serializer.validated_data['heal_value'],
+            'totalDamage': hero.damage_taken,
+            'healings_used': hero.healings_used,
+        })
+
+    def apply_tmp_hp(self, request, pk):
+        hero = self.get_object()
+        serializer = CommitTmpHpBonusSerializer(instance=hero, data=request.data)
+        serializer.is_valid(raise_exception=True)
+        hero = serializer.save()
+        return Response({
+            'committedHPBonus': serializer.validated_data['tmp_hp_value'],
+            'totalTmpBonus': hero.hp_tmp_bonus,
         })

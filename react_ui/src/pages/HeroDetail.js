@@ -7,6 +7,8 @@ import DnDProvider from '../providers/dnd';
 import HPBar from '../components/HPBar';
 import HeroStatsTab from '../components/hero-tabs/HeroStatsTab';
 import HeroSpellsTab from '../components/hero-tabs/HeroSpellsTab';
+import HeroRestTab from '../components/hero-tabs/HeroRestTab';
+import HeroInventoryTab from '../components/hero-tabs/HeroInventoryTab';
 
 
 class HeroDetail extends Component {
@@ -39,6 +41,7 @@ class HeroDetail extends Component {
                   <Tab>Inventory</Tab>
                   <Tab>Notes</Tab>
                   <Tab>Profile</Tab>
+                  <Tab>Rest</Tab>
                 </TabList>
 
                 <TabPanel>
@@ -54,13 +57,16 @@ class HeroDetail extends Component {
                   <h2>Any content 4</h2>
                 </TabPanel>
                 <TabPanel>
-                  <h2>Any content 5</h2>
+                  <HeroInventoryTab hero={hero} />
                 </TabPanel>
                 <TabPanel>
                   <h2>Any content 6</h2>
                 </TabPanel>
                 <TabPanel>
                   <h2>Any content 7</h2>
+                </TabPanel>
+                <TabPanel>
+                  <HeroRestTab hero={hero} />
                 </TabPanel>
               </Tabs>
             </div>

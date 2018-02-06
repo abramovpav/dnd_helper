@@ -1,0 +1,24 @@
+.inventory-tab {
+  .money-block {
+    display: flex;
+    flex-direction: row;
+    line-height: 30px;
+
+    .coin {
+      display: flex;
+      flex-direction: row;
+      margin-right: 30px;
+
+      > .icon-wrapper {
+        width: 40px;
+        > img {
+          max-height: 30px;
+          max-width: 30px;
+        }
+      }
+      .quantity {
+        flex-grow: 2;
+      }
+    }
+  }
+}

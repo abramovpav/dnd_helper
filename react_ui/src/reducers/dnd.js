@@ -76,6 +76,32 @@ export default function (state = initialState, action) {
           },
         },
       };
+    case 'PUT_COMMIT_HEAL_SUCCESS':
+      return {
+        ...state,
+        heroes: {
+          loading: false,
+          objects: {
+            ...state.heroes.objects,
+            [action.payload.heroId]: {
+              ...state.heroes.objects[action.payload.heroId],
+              damageTaken: action.payload.damageValue,
+              healingsUsed: action.payload.healingsUsed,
+            },
+          },
+        },
+      };
+    case 'POST_COMMIT_REST_SUCCESS':
+      return {
+        ...state,
+        heroes: {
+          loading: false,
+          objects: {
+            ...state.heroes.objects,
+            [action.payload.id]: action.payload,
+          },
+        },
+      };
     default:
       return state;
   }

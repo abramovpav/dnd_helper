@@ -51,6 +51,16 @@ export default class DataProvider {
       .catch(response => Promise.reject({ status: response.status }));
   }
 
+  post(url, data) {
+    return this.client.post(url, data).then((response) => {
+      if (response.status >= 200 && response.status < 300) {
+        return DataProvider.reduceResponse(response);
+      }
+      return Promise.reject(DataProvider.reduceResponse(response));
+    })
+      .catch(response => Promise.reject({ status: response.status }));
+  }
+
 
   dispatch(action, payload) {
     const newAction = Object.assign({

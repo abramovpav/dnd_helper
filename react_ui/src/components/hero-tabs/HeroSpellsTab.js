@@ -22,7 +22,7 @@ class HeroSpellsTab extends Component {
         {
           spells.map(spell => (
             <div key={spell.id} className="spell-box">
-              <div className="title">
+              <div className={`title ${spell.usageType}`}>
                 <span className="name">{spell.name}</span>
                 <span className="level">{spell.type} {spell.heroClass || spell.race} {spell.level}</span>
               </div>
