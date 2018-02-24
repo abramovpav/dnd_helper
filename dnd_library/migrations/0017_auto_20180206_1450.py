@@ -8,6 +8,7 @@ from django.db import migrations
 
 def load_fixture(apps, schema_editor):
     call_command('loaddata', 'heroclass_1.json')
+    call_command('loaddata', 'spells_0.json')
 
 
 def unload_fixture(apps, schema_editor):

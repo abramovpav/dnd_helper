@@ -7,7 +7,9 @@ from django.db import migrations
 
 
 def load_fixture(apps, schema_editor):
-    call_command('loaddata', 'spells_0.json')
+    # fixture doesn't work here because of changed model
+    # call_command('loaddata', 'spells_0.json')
+    pass
 
 
 def unload_fixture(apps, schema_editor):
